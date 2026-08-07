@@ -31,30 +31,16 @@ export const eServices: NavChild[] = [
   { label: "E-Conference", href: "https://shaggarcity.oo.et/?module=login", external: true },
   { label: "E-service", href: "https://eservice.shaggarcity.et/", external: true },
   { label: "E-investment", href: "https://investment.shaggarcity.et/login", external: true },
-  { label: "E-Trade", href: "https://etrade.gov.et/", external: true },
+  { label: "E-Trade", href: "http://etrade.gov.et/", external: true },
 ];
 
 
-export const subCities: NavChild[] = [
-  { label: "Furii", href: "https://furii-subcity.et/", external: true },
-  { label: "Galaan", href: "https://galaan-subcity.et/", external: true },
-  { label: "Galaan Guddaa", href: "https://galaanguddaa-subcity.et/", external: true },
-  { label: "Gafarsa Gujee", href: "https://gafarsaagujee-subcity.et/", external: true },
-  { label: "Buraayyuu", href: "https://buraayyuu-subcity.et/", external: true },
-  { label: "Sabbataa", href: "https://sabbataa-subcity.et/", external: true },
-  { label: "Mana Abbichuu", href: "https://manaabichuu-subcity.et/", external: true },
-  { label: "Malkaa Noonnoo", href: "https://malkanoonnoo-subcity.et/", external: true },
-  { label: "Kooyyee Faccee", href: "https://koyyeefaccee-subcity.et/", external: true },
-  { label: "Kuraa Jiddaa", href: "https://kurajiddaa-subcity.et/", external: true },
-  { label: "Sulultaa", href: "https://sulultaa-subcity.et/", external: true },
-  { label: "Lagaxafoo", href: "https://lagaxafoo-subcity.et/", external: true },
-];
+export const subCities: NavChild[] = [];
 
 export const navigation: NavItem[] = [
   { label: "Home", to: "/" },
   { label: "About", to: "/about" },
   { label: "E-service", children: eServices },
-  { label: "Sub-city", children: subCities },
   { label: "News", to: "/news" },
   { label: "Gallery", to: "/gallery" },
   { label: "Careers", to: "/careers" },
@@ -101,12 +87,12 @@ export const leadership = [
   },
 ];
 
-/** Source site publishes these counters without figures — kept as placeholders. */
+/** Source site publishes these counters via purecounter — values mirrored from buraayyuu.shaggarcity.et. */
 export const statistics = [
-  { label: "Population", value: null as number | null },
-  { label: "Sub-City", value: null as number | null },
-  { label: "Woreda", value: null as number | null },
-  { label: "Employee", value: null as number | null },
+  { label: "Population", value: 283613 },
+  { label: "Sub-City", value: null as number | null, display: "Burayu sub city" },
+  { label: "Woreda", value: 4 },
+  { label: "Employee", value: 1752 },
 ];
 
 export const cityProfile = [
@@ -181,35 +167,4 @@ export type Job = {
   deadline: string;
 };
 
-export const jobs: Job[] = [
-  {
-    title: "new job",
-    type: "new job",
-    location: "new job",
-    office: null,
-    salary: "34567.00",
-    description: "new job",
-    startedOn: null,
-    deadline: "2024-12-21",
-  },
-  {
-    title: "new job",
-    type: "new job",
-    location: "new job",
-    office: null,
-    salary: "34567.00",
-    description: "new job",
-    startedOn: null,
-    deadline: "2024-12-21",
-  },
-  {
-    title: "IT office",
-    type: "permenant",
-    location: "sheger",
-    office: "science and technology",
-    salary: "1233.00",
-    description: "test",
-    startedOn: "2024-12-25",
-    deadline: "2024-12-25",
-  },
-];
+export const jobs: Job[] = [];

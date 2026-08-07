@@ -5,20 +5,22 @@ export function StatCounter({
   value,
   label,
   suffix = "",
+  textValue,
 }: {
   value: number | null;
   label: string;
   suffix?: string;
+  textValue?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [display, setDisplay] = useState(0);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     if (value === null || !ref.current) return;
     const node = ref.current;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) {
-      setDisplay(value);
+      setCount(value);
       return;
     }
     let frame = 0;
@@ -30,7 +32,7 @@ export function StatCounter({
         const duration = 1400;
         const tick = (now: number) => {
           const p = Math.min((now - start) / duration, 1);
-          setDisplay(Math.round(value * (1 - Math.pow(1 - p, 3))));
+          setCount(Math.round(value * (1 - Math.pow(1 - p, 3))));
           if (p < 1) frame = requestAnimationFrame(tick);
         };
         frame = requestAnimationFrame(tick);
@@ -47,13 +49,15 @@ export function StatCounter({
   return (
     <div ref={ref} className="text-center">
       <p className="font-display text-4xl font-semibold text-primary-foreground sm:text-5xl">
-        {value === null ? (
+        {textValue ? (
+          <span className="text-xl">{textValue}</span>
+        ) : value === null ? (
           <span className="text-primary-foreground/45" title="Figure not published">
             &mdash;
           </span>
         ) : (
           <>
-            {display.toLocaleString()}
+            {count.toLocaleString()}
             {suffix}
           </>
         )}

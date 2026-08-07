@@ -72,7 +72,7 @@ function AboutPage() {
           <ul className="grid grid-cols-2 gap-8 lg:grid-cols-4">
             {statistics.map((stat) => (
               <li key={stat.label}>
-                <StatCounter value={stat.value} label={stat.label} />
+                <StatCounter value={stat.value} label={stat.label} textValue={stat.display} />
               </li>
             ))}
           </ul>

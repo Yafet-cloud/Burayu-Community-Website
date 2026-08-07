@@ -58,13 +58,13 @@ export const Route = createFileRoute("/")({
 const serviceCards = [
   {
     label: "E-library",
-    href: "http://196.189.124.193:8000/login",
+    href: "/e-library",
     description: "Digital library access for residents, students and city staff.",
     Icon: LibraryBig,
   },
   {
     label: "E-Land",
-    href: "http://196.189.124.252/sheger/Account/Login",
+    href: "/e-land",
     description: "Land administration services online.",
     Icon: MapPinned,
   },
@@ -88,7 +88,7 @@ const serviceCards = [
   },
   {
     label: "E-Trade",
-    href: "https://etrade.gov.et/",
+    href: "http://etrade.gov.et/",
     description: "National electronic trade registration and licensing.",
     Icon: Store,
   },
@@ -283,13 +283,10 @@ function HomePage() {
           <ul className="grid grid-cols-2 gap-8 lg:grid-cols-4">
             {statistics.map((stat) => (
               <li key={stat.label}>
-                <StatCounter value={stat.value} label={stat.label} />
+                <StatCounter value={stat.value} label={stat.label} textValue={stat.display} />
               </li>
             ))}
           </ul>
-          <p className="mt-8 text-center text-xs text-primary-foreground/55">
-            Figures marked &mdash; have not yet been published by the administration.
-          </p>
         </div>
       </section>
 
