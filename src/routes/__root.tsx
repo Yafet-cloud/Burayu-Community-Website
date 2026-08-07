@@ -76,21 +76,29 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Burayu Sub City — Science & Technology Portal" },
+      { title: "Official Burayu Sub-City Website" },
       {
         name: "description",
         content:
-          "Burayu Sub City of Shaggar City: welcome message, city profile, e-services, latest news, gallery and contact details.",
+          "Official Burayu Sub-City website providing information, services, news, and resources.",
       },
       { property: "og:site_name", content: "Burayu Sub City" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:title", content: "Burayu Sub City — Science & Technology Portal" },
-      { name: "twitter:title", content: "Burayu Sub City — Science & Technology Portal" },
-      { property: "og:description", content: "Burayu Sub City of Shaggar City: welcome message, city profile, e-services, latest news, gallery and contact details." },
-      { name: "twitter:description", content: "Burayu Sub City of Shaggar City: welcome message, city profile, e-services, latest news, gallery and contact details." },
-      { property: "og:image", content: "https://buraayyuu.shaggarcity.et/storage/slide/Is60RJUvWcHSjg0FaGv3WR8YbRv898rWM4I445e8.jpg" },
-      { name: "twitter:image", content: "https://buraayyuu.shaggarcity.et/storage/slide/Is60RJUvWcHSjg0FaGv3WR8YbRv898rWM4I445e8.jpg" },
+      { property: "og:title", content: "Official Burayu Sub-City Website" },
+      { name: "twitter:title", content: "Official Burayu Sub-City Website" },
+      {
+        property: "og:description",
+        content:
+          "Official Burayu Sub-City website providing information, services, news, and resources.",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Official Burayu Sub-City website providing information, services, news, and resources.",
+      },
+      { property: "og:image", content: "/favicon.ico" },
+      { name: "twitter:image", content: "/favicon.ico" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -137,7 +145,6 @@ function RootComponent() {
         <Footer />
         <BurayuAssistant />
       </div>
-
     </QueryClientProvider>
   );
 }

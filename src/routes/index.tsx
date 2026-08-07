@@ -36,20 +36,20 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Burayu Sub City — Science & Technology Portal" },
+      { title: "Official Burayu Sub-City Website" },
       {
         name: "description",
         content:
-          "Burayu Sub City of Shaggar City: welcome message, city profile, e-services, latest news, gallery and contact details.",
+          "Official Burayu Sub-City website providing information, services, news, and resources.",
       },
-      { property: "og:title", content: "Burayu Sub City — Science & Technology Portal" },
+      { property: "og:title", content: "Official Burayu Sub-City Website" },
       {
         property: "og:description",
         content:
-          "Burayu Sub City of Shaggar City: welcome message, city profile, e-services, latest news, gallery and contact details.",
+          "Official Burayu Sub-City website providing information, services, news, and resources.",
       },
-      { property: "og:image", content: heroSlides[0] },
-      { name: "twitter:image", content: heroSlides[0] },
+      { property: "og:image", content: "/favicon.ico" },
+      { name: "twitter:image", content: "/favicon.ico" },
     ],
   }),
   component: HomePage,

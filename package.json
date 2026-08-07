@@ -1,5 +1,6 @@
 {
-  "name": "burayu-sub-city",
+  "name": "burayu-community-website",
+  "description": "Burayu Sub-City Website — A community website providing local information, services, news, and resources.",
   "private": true,
   "sideEffects": false,
   "type": "module",
