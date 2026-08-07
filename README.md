@@ -2,7 +2,7 @@
 
 # 🏛️ Burayu Sub-City Website
 
-**Official Community Website for Burayu Sub-City Science & Technology Office**
+**Official Community Website for Burayu Sub-City**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev)

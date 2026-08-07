@@ -290,11 +290,11 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Science & Technology highlights */}
+      {/* Digital services highlights */}
       <section className="section-y" aria-labelledby="highlights-heading">
         <div className="container-page">
           <SectionHeading
-            eyebrow="Science & Technology"
+            eyebrow="Digital Services"
             title="Digital transformation of Shaggar"
             id="highlights-heading"
             description="Shaggar City is undergoing a digital transformation to improve service efficiency, accessibility and connectivity for its residents and businesses."
@@ -486,7 +486,7 @@ function HomePage() {
               id="cta-heading"
               className="text-3xl font-semibold text-primary-foreground sm:text-4xl"
             >
-              Work with the Science &amp; Technology Office
+              Work with the Sub City Administration
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-primary-foreground/85">
               Explore current vacancies at the sub city or get in touch with the administration.

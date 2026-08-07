@@ -196,7 +196,7 @@ export function BurayuAssistant() {
               </span>
               <div className="min-w-0 flex-1">
                 <p className="font-display text-sm font-semibold">Burayu Smart Assistant</p>
-                <p className="truncate text-xs opacity-80">Science &amp; Technology Office</p>
+                <p className="truncate text-xs opacity-80">Sub City Administration</p>
               </div>
               <div className="flex items-center gap-1">
                 <label className="sr-only" htmlFor="assistant-language">

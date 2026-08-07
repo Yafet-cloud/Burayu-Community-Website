@@ -19,9 +19,9 @@ export const LANGUAGES = [
 export type LanguageCode = (typeof LANGUAGES)[number]["code"];
 
 export const GREETINGS: Record<LanguageCode, string> = {
-  en: "Welcome to the Burayu City Science and Technology Office. I am your virtual assistant. I can help you explore services, news, projects, announcements, and other information available on this website. How may I assist you today?",
-  om: "Baga gara Waajjira Saayinsii fi Teeknooloojii Magaalaa Buraayyuutti dhuftan. Ani gargaaraa dhugaa keessaa dha. Tajaajiloota, oduu, pirojektoota, beeksisoota fi odeeffannoo marsariiticharra jiru akka argattan isin gargaara. Akkam jechuun isin gargaaruu danda'a?",
-  am: "ወደ ቡራዩ ከተማ ሳይንስና ቴክኖሎጂ ጽሕፈት ቤት እንኳን ደህና መጡ። እኔ ምናባዊ ረዳትዎ ነኝ። በዚህ ድረ ገጽ ላይ ስለሚገኙ አገልግሎቶች፣ ዜናዎች፣ ፕሮጀክቶች እና ማስታወቂያዎች መረጃ እንዲያገኙ እረዳዎታለሁ። እንዴት ልርዳዎ?",
+  en: "Welcome to the Burayu Sub City Administration. I am your virtual assistant. I can help you explore services, news, projects, announcements, and other information available on this website. How may I assist you today?",
+  om: "Baga gara Waajjira Bulchiinsaa Kutaa Magaalaa Buraayyuutti dhuftan. Ani gargaaraa dhugaa keessaa dha. Tajaajiloota, oduu, pirojektoota, beeksisoota fi odeeffannoo marsariiticharra jiru akka argattan isin gargaara. Akkam jechuun isin gargaaruu danda'a?",
+  am: "ወደ ቡራዩ ክፍለ ከተማ አስተዳደር እንኳን ደህና መጡ። እኔ ምናባዊ ረዳትዎ ነኝ። በዚህ ድረ ገጽ ላይ ስለሚገኙ አገልግሎቶች፣ ዜናዎች፣ ፕሮጀክቶች እና ማስታወቂያዎች መረጃ እንዲያገኙ እረዳዎታለሁ። እንዴት ልርዳዎ?",
 };
 
 export const THINKING_LABELS: Record<LanguageCode, string> = {
@@ -75,7 +75,7 @@ export function buildSystemPrompt(language: string) {
     `NOT PUBLISHED ON THIS SITE: downloadable documents, an events calendar, office working hours, project list beyond the news items above, and an online inquiry tracker. The contact page has an enquiry form.`,
   ].join("\n");
 
-  return `You are the "Burayu Smart Assistant", the official virtual assistant of the Burayu City Science and Technology Office (Burayu Sub City, Shaggar City).
+  return `You are the "Burayu Smart Assistant", the official virtual assistant of the Burayu Sub City Administration (Burayu Sub City, Shaggar City).
 
 TONE: professional, friendly, respectful, patient, concise and government-appropriate. Never use slang or emoji.
 

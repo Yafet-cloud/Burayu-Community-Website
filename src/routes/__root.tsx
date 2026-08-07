@@ -79,7 +79,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Burayu Sub City — Science & Technology Portal" },
+      { title: "Burayu Sub City — Community Portal" },
       {
         name: "description",
         content:
@@ -88,7 +88,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "Burayu Sub City" },
       { property: "og:type", content: "website" },
       { property: "og:url", content: SITE_URL },
-      { property: "og:title", content: "Burayu Sub City — Science & Technology Portal" },
+      { property: "og:title", content: "Burayu Sub City — Community Portal" },
       {
         property: "og:description",
         content:
@@ -98,7 +98,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Burayu Sub City — Science & Technology Portal" },
+      { name: "twitter:title", content: "Burayu Sub City — Community Portal" },
       {
         name: "twitter:description",
         content:
