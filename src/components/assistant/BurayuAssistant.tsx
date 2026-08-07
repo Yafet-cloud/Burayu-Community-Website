@@ -21,9 +21,10 @@ import {
 import { Shimmer } from "@/components/ai-elements/shimmer";
 import { cn } from "@/lib/utils";
 import {
-  GREETING,
+  GREETINGS,
   LANGUAGES,
   QUICK_ACTIONS,
+  THINKING_LABELS,
   type LanguageCode,
 } from "@/lib/assistant/knowledge";
 
@@ -173,9 +174,9 @@ export function BurayuAssistant() {
         aria-expanded={open}
         whileHover={{ scale: 1.04 }}
         whileTap={{ scale: 0.96 }}
-        className="fixed bottom-5 right-5 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lift transition-colors hover:bg-primary-deep"
+        className="fixed bottom-4 right-4 z-50 inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lift transition-colors hover:bg-primary-deep"
       >
-        {open ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
+        {open ? <X className="h-5 w-5" /> : <MessageCircle className="h-5 w-5" />}
       </motion.button>
 
       <AnimatePresence>
@@ -187,11 +188,11 @@ export function BurayuAssistant() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
             transition={{ type: "spring", stiffness: 320, damping: 30 }}
-            className="fixed bottom-24 right-3 z-50 flex h-[min(78dvh,620px)] w-[min(calc(100vw-1.5rem),24rem)] flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-lift"
+            className="fixed bottom-20 right-3 z-50 flex h-[min(68dvh,540px)] w-[min(calc(100vw-1.5rem),22rem)] flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-lift sm:right-4"
           >
-            <header className="flex items-start gap-3 border-b border-border bg-primary px-4 py-3 text-primary-foreground">
-              <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary-foreground/15">
-                <Bot className="h-5 w-5" />
+            <header className="flex items-center gap-2.5 border-b border-border bg-primary px-3 py-2.5 text-primary-foreground">
+              <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-foreground/15">
+                <Bot className="h-4 w-4" />
               </span>
               <div className="min-w-0 flex-1">
                 <p className="font-display text-sm font-semibold">Burayu Smart Assistant</p>
@@ -225,10 +226,10 @@ export function BurayuAssistant() {
             </header>
 
             <Conversation className="flex-1">
-              <ConversationContent className="gap-3 px-3 py-4">
+              <ConversationContent className="gap-2.5 px-3 py-3">
                 <Message from="assistant">
                   <MessageContent>
-                    <MessageResponse>{GREETING}</MessageResponse>
+                    <MessageResponse>{GREETINGS[language]}</MessageResponse>
                     <time className="mt-1 block text-[11px] text-muted-foreground">
                       {formatTime(startedAt)}
                     </time>
@@ -270,7 +271,7 @@ export function BurayuAssistant() {
                 {status === "submitted" && (
                   <Message from="assistant">
                     <MessageContent>
-                      <Shimmer>Thinking...</Shimmer>
+                      <Shimmer>{THINKING_LABELS[language]}</Shimmer>
                     </MessageContent>
                   </Message>
                 )}
@@ -284,7 +285,7 @@ export function BurayuAssistant() {
               <ConversationScrollButton />
             </Conversation>
 
-            <div className="border-t border-border bg-card p-3">
+            <div className="border-t border-border bg-card p-2.5">
               <PromptInput
                 onSubmit={(_message, event) => {
                   event.preventDefault();

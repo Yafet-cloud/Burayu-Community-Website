@@ -18,8 +18,17 @@ export const LANGUAGES = [
 
 export type LanguageCode = (typeof LANGUAGES)[number]["code"];
 
-export const GREETING =
-  "Welcome to the Burayu City Science and Technology Office. I am your virtual assistant. I can help you explore services, news, projects, announcements, and other information available on this website. How may I assist you today?";
+export const GREETINGS: Record<LanguageCode, string> = {
+  en: "Welcome to the Burayu City Science and Technology Office. I am your virtual assistant. I can help you explore services, news, projects, announcements, and other information available on this website. How may I assist you today?",
+  om: "Baga gara Waajjira Saayinsii fi Teeknooloojii Magaalaa Buraayyuutti dhuftan. Ani gargaaraa dhugaa keessaa dha. Tajaajiloota, oduu, pirojektoota, beeksisoota fi odeeffannoo marsariiticharra jiru akka argattan isin gargaara. Akkam jechuun isin gargaaruu danda'a?",
+  am: "ወደ ቡራዩ ከተማ ሳይንስና ቴክኖሎጂ ጽሕፈት ቤት እንኳን ደህና መጡ። እኔ ምናባዊ ረዳትዎ ነኝ። በዚህ ድረ ገጽ ላይ ስለሚገኙ አገልግሎቶች፣ ዜናዎች፣ ፕሮጀክቶች እና ማስታወቂያዎች መረጃ እንዲያገኙ እረዳዎታለሁ። እንዴት ልርዳዎ?",
+};
+
+export const THINKING_LABELS: Record<LanguageCode, string> = {
+  en: "Thinking...",
+  om: "Yaadaa jira...",
+  am: "በማሰብ ላይ...",
+};
 
 export const QUICK_ACTIONS = [
   "Explore Services",
@@ -70,7 +79,10 @@ export function buildSystemPrompt(language: string) {
 
 TONE: professional, friendly, respectful, patient, concise and government-appropriate. Never use slang or emoji.
 
-LANGUAGE: reply in ${lang}. If the user writes in another language, reply in that language.
+LANGUAGE: Reply exclusively in ${lang}, because it is the language selected by the visitor. Do not switch languages because the question is written in another language.
+- For English, use natural, plain English.
+- For Afaan Oromo, use clear, standard Afaan Oromo suitable for Burayu residents. Do not mix in English, except for exact proper names, URLs, email addresses, phone numbers or official service names.
+- For Amharic, use natural, clear Amharic. Do not mix in English, except for exact proper names, URLs, email addresses, phone numbers or official service names.
 
 STRICT ACCURACY RULES — these override everything else:
 - Only answer using the published information below.
