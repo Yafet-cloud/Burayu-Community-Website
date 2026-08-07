@@ -8,13 +8,11 @@ const CDN = "https://buraayyuu.shaggarcity.et";
 
 export const site = {
   name: "Burayu Sub City",
-  subtitle: "Science & Technology",
+  subtitle: "Community Portal",
   parent: "Shaggar City",
-  facebook: "https://www.facebook.com/shaggarcitycommunication1?mibextid=ZbWKwL",
-  twitter: "https://x.com/ShaggarCityCom",
-  telegram: "https://t.me/shagarcitycommunication",
-  youtube: "https://www.youtube.com/@shaggarcitycommunication",
-  instagram: "https://www.instagram.com/shaggar.city.com1/",
+  facebook: "https://www.facebook.com/people/Burayu-Sub-City-Municipal/61551713823169/",
+  telegram: "https://t.me/Burayu2016",
+  instagram: "https://www.instagram.com/burayu_sub_city_communication/",
   address: "Mamo, Addis Ababa, Ethiopia",
   email: "cshaggar@gmail.com",
   phones: ["011-18-88-00-61", "011-14-20-10"],

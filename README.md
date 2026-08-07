@@ -49,10 +49,10 @@ The **Burayu Sub-City Website** is a modern, responsive web application designed
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/burayu-renewed-spark.git
+git clone https://github.com/Yafet-cloud/Burayu-Community-Website.git
 
 # Navigate to project directory
-cd burayu-renewed-spark
+cd Burayu-Community-Website
 
 # Install dependencies
 bun install
@@ -88,7 +88,7 @@ npm run preview
 ## 📂 Project Structure
 
 ```
-burayu-renewed-spark/
+Burayu-Community-Website/
 ├── src/
 │   ├── components/     # Reusable UI components
 │   │   ├── layout/     # Header, Footer, Navbar
@@ -113,17 +113,15 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📱 Social Media
 
-Stay connected with Shaggar City Communication Office:
+Stay connected with Burayu Sub-City:
 
-- 📘 [Facebook](https://www.facebook.com/shaggarcitycommunication1)
-- 🐦 [X (Twitter)](https://x.com/ShaggarCityCom)
-- ✈️ [Telegram](https://t.me/shagarcitycommunication)
-- 📺 [YouTube](https://www.youtube.com/@shaggarcitycommunication)
-- 📷 [Instagram](https://www.instagram.com/shaggar.city.com1/)
+- 📘 [Facebook](https://www.facebook.com/people/Burayu-Sub-City-Municipal/61551713823169/)
+- ✈️ [Telegram](https://t.me/Burayu2016)
+- 📷 [Instagram](https://www.instagram.com/burayu_sub_city_communication/)
 
 ## 📞 Contact
 
-**Shaggar City Burayu Sub-City**
+**Burayu Sub-City**
 
 - 📍 Address: Mamo, Addis Ababa, Ethiopia
 - 📧 Email: [cshaggar@gmail.com](mailto:cshaggar@gmail.com)
@@ -139,6 +137,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Made with ❤️ for the Burayu Community**
 
-*"Shaggar City — Transforming through Innovation & Technology"*
+*"Building a Smarter, More Connected Burayu"*
 
 </div>

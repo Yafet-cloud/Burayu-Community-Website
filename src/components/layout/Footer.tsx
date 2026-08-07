@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, Facebook, Twitter, Send, Youtube, Instagram } from "lucide-react";
+import { ArrowUpRight, Facebook, Send, Instagram } from "lucide-react";
 import { eServices, site } from "@/lib/site-data";
 
 const usefulLinks = [
@@ -28,43 +28,25 @@ export function Footer() {
               href={site.facebook}
               target="_blank"
               rel="noreferrer noopener"
-              aria-label="Shaggar City Communication on Facebook"
+              aria-label="Burayu Sub-City on Facebook"
               className="inline-flex size-9 items-center justify-center rounded-full border border-primary-foreground/25 transition-colors hover:bg-primary-foreground/10"
             >
               <Facebook aria-hidden="true" className="size-4" />
             </a>
             <a
-              href={site.twitter}
-              target="_blank"
-              rel="noreferrer noopener"
-              aria-label="Shaggar City Communication on X (Twitter)"
-              className="inline-flex size-9 items-center justify-center rounded-full border border-primary-foreground/25 transition-colors hover:bg-primary-foreground/10"
-            >
-              <Twitter aria-hidden="true" className="size-4" />
-            </a>
-            <a
               href={site.telegram}
               target="_blank"
               rel="noreferrer noopener"
-              aria-label="Shaggar City Communication on Telegram"
+              aria-label="Burayu Sub-City on Telegram"
               className="inline-flex size-9 items-center justify-center rounded-full border border-primary-foreground/25 transition-colors hover:bg-primary-foreground/10"
             >
               <Send aria-hidden="true" className="size-4" />
             </a>
             <a
-              href={site.youtube}
-              target="_blank"
-              rel="noreferrer noopener"
-              aria-label="Shaggar City Communication on YouTube"
-              className="inline-flex size-9 items-center justify-center rounded-full border border-primary-foreground/25 transition-colors hover:bg-primary-foreground/10"
-            >
-              <Youtube aria-hidden="true" className="size-4" />
-            </a>
-            <a
               href={site.instagram}
               target="_blank"
               rel="noreferrer noopener"
-              aria-label="Shaggar City Communication on Instagram"
+              aria-label="Burayu Sub-City on Instagram"
               className="inline-flex size-9 items-center justify-center rounded-full border border-primary-foreground/25 transition-colors hover:bg-primary-foreground/10"
             >
               <Instagram aria-hidden="true" className="size-4" />

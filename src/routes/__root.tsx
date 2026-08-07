@@ -79,30 +79,30 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Official Burayu Sub-City Website" },
+      { title: "Burayu Sub City — Science & Technology Portal" },
       {
         name: "description",
         content:
-          "Official Burayu Sub-City website providing information, services, news, and resources.",
+          "Burayu Sub City of Shaggar City: welcome message, city profile, e-services, latest news, gallery and contact details.",
       },
       { property: "og:site_name", content: "Burayu Sub City" },
       { property: "og:type", content: "website" },
       { property: "og:url", content: SITE_URL },
-      { property: "og:title", content: "Official Burayu Sub-City Website" },
+      { property: "og:title", content: "Burayu Sub City — Science & Technology Portal" },
       {
         property: "og:description",
         content:
-          "Official Burayu Sub-City website providing information, services, news, and resources.",
+          "Burayu Sub City of Shaggar City: welcome message, city profile, e-services, latest news, gallery and contact details.",
       },
       { property: "og:image", content: OG_IMAGE },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Official Burayu Sub-City Website" },
+      { name: "twitter:title", content: "Burayu Sub City — Science & Technology Portal" },
       {
         name: "twitter:description",
         content:
-          "Official Burayu Sub-City website providing information, services, news, and resources.",
+          "Burayu Sub City of Shaggar City: welcome message, city profile, e-services, latest news, gallery and contact details.",
       },
       { name: "twitter:image", content: OG_IMAGE },
     ],
