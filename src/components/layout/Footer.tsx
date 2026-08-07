@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, Facebook } from "lucide-react";
+import { ArrowUpRight, Facebook, Twitter, Send, Youtube, Instagram } from "lucide-react";
 import { eServices, site } from "@/lib/site-data";
 
 const usefulLinks = [
@@ -23,15 +23,53 @@ export function Footer() {
           <p className="mt-4 max-w-md text-sm leading-relaxed text-primary-foreground/75">
             {site.footerIntro}
           </p>
-          <a
-            href={site.facebook}
-            target="_blank"
-            rel="noreferrer noopener"
-            aria-label="Shaggar City Communication on Facebook"
-            className="mt-5 inline-flex size-9 items-center justify-center rounded-full border border-primary-foreground/25 transition-colors hover:bg-primary-foreground/10"
-          >
-            <Facebook aria-hidden="true" className="size-4" />
-          </a>
+          <div className="mt-5 flex gap-3">
+            <a
+              href={site.facebook}
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label="Shaggar City Communication on Facebook"
+              className="inline-flex size-9 items-center justify-center rounded-full border border-primary-foreground/25 transition-colors hover:bg-primary-foreground/10"
+            >
+              <Facebook aria-hidden="true" className="size-4" />
+            </a>
+            <a
+              href={site.twitter}
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label="Shaggar City Communication on X (Twitter)"
+              className="inline-flex size-9 items-center justify-center rounded-full border border-primary-foreground/25 transition-colors hover:bg-primary-foreground/10"
+            >
+              <Twitter aria-hidden="true" className="size-4" />
+            </a>
+            <a
+              href={site.telegram}
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label="Shaggar City Communication on Telegram"
+              className="inline-flex size-9 items-center justify-center rounded-full border border-primary-foreground/25 transition-colors hover:bg-primary-foreground/10"
+            >
+              <Send aria-hidden="true" className="size-4" />
+            </a>
+            <a
+              href={site.youtube}
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label="Shaggar City Communication on YouTube"
+              className="inline-flex size-9 items-center justify-center rounded-full border border-primary-foreground/25 transition-colors hover:bg-primary-foreground/10"
+            >
+              <Youtube aria-hidden="true" className="size-4" />
+            </a>
+            <a
+              href={site.instagram}
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label="Shaggar City Communication on Instagram"
+              className="inline-flex size-9 items-center justify-center rounded-full border border-primary-foreground/25 transition-colors hover:bg-primary-foreground/10"
+            >
+              <Instagram aria-hidden="true" className="size-4" />
+            </a>
+          </div>
         </div>
 
         <div className="grid grid-cols-2 gap-8">
