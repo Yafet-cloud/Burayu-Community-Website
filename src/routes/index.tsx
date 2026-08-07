@@ -48,8 +48,8 @@ export const Route = createFileRoute("/")({
         content:
           "Official Burayu Sub-City website providing information, services, news, and resources.",
       },
-      { property: "og:image", content: "https://buraayyuu.shaggarcity.et/storage/slide/Is60RJUvWcHSjg0FaGv3WR8YbRv898rWM4I445e8.jpg" },
-      { name: "twitter:image", content: "https://buraayyuu.shaggarcity.et/storage/slide/Is60RJUvWcHSjg0FaGv3WR8YbRv898rWM4I445e8.jpg" },
+      { property: "og:image", content: "https://buraayyuu.shaggarcity.et/storage/slide/7AfD3wZPxUEHRre4lAXoHDVXujDCsZhhZeeV8XHr.jpg" },
+      { name: "twitter:image", content: "https://buraayyuu.shaggarcity.et/storage/slide/7AfD3wZPxUEHRre4lAXoHDVXujDCsZhhZeeV8XHr.jpg" },
     ],
   }),
   component: HomePage,

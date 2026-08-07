@@ -72,7 +72,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 const SITE_URL = "https://buraayyuu.shaggarcity.et";
-const OG_IMAGE = `${SITE_URL}/storage/slide/Is60RJUvWcHSjg0FaGv3WR8YbRv898rWM4I445e8.jpg`;
+const OG_IMAGE = `${SITE_URL}/storage/slide/7AfD3wZPxUEHRre4lAXoHDVXujDCsZhhZeeV8XHr.jpg`;
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
