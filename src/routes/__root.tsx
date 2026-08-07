@@ -71,6 +71,9 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+const SITE_URL = "https://buraayyuu.shaggarcity.et";
+const OG_IMAGE = `${SITE_URL}/storage/slide/Is60RJUvWcHSjg0FaGv3WR8YbRv898rWM4I445e8.jpg`;
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
@@ -84,21 +87,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:site_name", content: "Burayu Sub City" },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:url", content: SITE_URL },
       { property: "og:title", content: "Official Burayu Sub-City Website" },
-      { name: "twitter:title", content: "Official Burayu Sub-City Website" },
       {
         property: "og:description",
         content:
           "Official Burayu Sub-City website providing information, services, news, and resources.",
       },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Official Burayu Sub-City Website" },
       {
         name: "twitter:description",
         content:
           "Official Burayu Sub-City website providing information, services, news, and resources.",
       },
-      { property: "og:image", content: "/favicon.ico" },
-      { name: "twitter:image", content: "/favicon.ico" },
+      { name: "twitter:image", content: OG_IMAGE },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
