@@ -29,8 +29,12 @@ import {
 
 const STORAGE_KEY = "burayu-assistant-conversation";
 const LANG_KEY = "burayu-assistant-language";
+const MAX_SAVED_MESSAGES = 50;
+const MAX_SAVED_MESSAGE_LENGTH = 20_000;
 
 function messageText(message: UIMessage) {
+  if (!Array.isArray(message.parts)) return "";
+
   return message.parts
     .map((part) => (part.type === "text" ? part.text : ""))
     .join("")
@@ -41,12 +45,32 @@ function formatTime(date: Date) {
   return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 }
 
+function isSavedMessage(value: unknown): value is UIMessage {
+  if (!value || typeof value !== "object") return false;
+  const message = value as Partial<UIMessage>;
+
+  return (
+    typeof message.id === "string" &&
+    (message.role === "user" || message.role === "assistant") &&
+    Array.isArray(message.parts) &&
+    message.parts.every(
+      (part) =>
+        part &&
+        typeof part === "object" &&
+        (part as { type?: unknown }).type === "text" &&
+        typeof (part as { text?: unknown }).text === "string" &&
+        (part as { text: string }).text.length <= MAX_SAVED_MESSAGE_LENGTH,
+    )
+  );
+}
+
 function loadMessages(): UIMessage[] {
   if (typeof window === "undefined") return [];
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
     const parsed: unknown = raw ? JSON.parse(raw) : null;
-    return Array.isArray(parsed) ? (parsed as UIMessage[]) : [];
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter(isSavedMessage).slice(-MAX_SAVED_MESSAGES);
   } catch {
     return [];
   }
@@ -81,12 +105,20 @@ export function BurayuAssistant() {
   });
 
   useEffect(() => {
-    const stored = window.localStorage.getItem(LANG_KEY);
-    if (stored === "en" || stored === "om" || stored === "am") setLanguage(stored);
+    try {
+      const stored = window.localStorage.getItem(LANG_KEY);
+      if (stored === "en" || stored === "om" || stored === "am") setLanguage(stored);
+    } catch {
+      /* storage may be unavailable; English remains the session default */
+    }
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem(LANG_KEY, language);
+    try {
+      window.localStorage.setItem(LANG_KEY, language);
+    } catch {
+      /* language selection still works for this session */
+    }
   }, [language]);
 
   useEffect(() => {
@@ -124,7 +156,11 @@ export function BurayuAssistant() {
 
   const reset = useCallback(() => {
     setMessages([]);
-    window.localStorage.removeItem(STORAGE_KEY);
+    try {
+      window.localStorage.removeItem(STORAGE_KEY);
+    } catch {
+      /* clearing the in-memory conversation is still sufficient */
+    }
     focusInput();
   }, [setMessages, focusInput]);
 
@@ -241,8 +277,7 @@ export function BurayuAssistant() {
 
                 {error && (
                   <p role="alert" className="px-1 text-xs text-destructive">
-                    The assistant is unavailable right now. Please try again, or contact the office
-                    directly at cshaggar@gmail.com.
+                    Chatbot is currently unavailable. Please try again later.
                   </p>
                 )}
               </ConversationContent>

@@ -10,7 +10,7 @@ export function StatCounter({
   value: number | null;
   label: string;
   suffix?: string;
-  textValue?: string;
+  textValue?: string | null | undefined;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [count, setCount] = useState(0);
