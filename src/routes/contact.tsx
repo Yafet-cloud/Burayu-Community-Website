@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
-import { Loader2, Send } from "lucide-react";
+import { Send } from "lucide-react";
 import { PageHeader } from "@/components/common/PageHeader";
 import { ContactInfo } from "@/components/common/ContactInfo";
 import { SectionHeading } from "@/components/common/SectionHeading";
@@ -25,17 +25,22 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
-type Status = "idle" | "sending" | "sent";
+type Status = "idle" | "sent";
 
 function ContactPage() {
   const [status, setStatus] = useState<Status>("idle");
 
-  // The public site posts to its own backend; this redesign keeps the form
-  // presentational and points people to the published email address.
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus("sending");
-    setTimeout(() => setStatus("sent"), 700);
+    const form = new FormData(e.currentTarget);
+    const subject = String(form.get("subject") ?? "");
+    const name = String(form.get("name") ?? "");
+    const email = String(form.get("email") ?? "");
+    const message = String(form.get("message") ?? "");
+    const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+
+    window.location.href = `mailto:${site.email}?${new URLSearchParams({ subject, body })}`;
+    setStatus("sent");
   }
 
   const fieldClass =
@@ -111,25 +116,15 @@ function ContactPage() {
 
               <button
                 type="submit"
-                disabled={status === "sending"}
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-primary px-6 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-deep disabled:opacity-70"
               >
-                {status === "sending" ? (
-                  <>
-                    <Loader2 aria-hidden="true" className="size-4 animate-spin" />
-                    Loading
-                  </>
-                ) : (
-                  <>
-                    <Send aria-hidden="true" className="size-4" />
-                    Send Message
-                  </>
-                )}
+                <Send aria-hidden="true" className="size-4" />
+                Send Message
               </button>
 
               <p aria-live="polite" className="min-h-5 text-sm text-primary">
                 {status === "sent"
-                  ? `Thank you. Please also email ${site.email} so the office can follow up.`
+                  ? "Your email application should open with your message ready to send."
                   : ""}
               </p>
             </form>
