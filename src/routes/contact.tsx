@@ -58,6 +58,20 @@ function ContactPage() {
         <div className="container-page">
           <ContactInfo />
 
+          <div className="mt-10 overflow-hidden rounded-2xl border border-border">
+            <iframe
+              title="Burayu Sub City Office Location"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5!2d38.76!3d9.01!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOcKwMDAnMzYuMCJOIDM4wrA0NSczNi4wIkU!5e0!3m2!1sen!2set!4v1700000000000!5m2!1sen!2set"
+              width="100%"
+              height="300"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="w-full"
+            />
+          </div>
+
           <div className="mt-14 grid gap-10 lg:grid-cols-[1fr_1.1fr]">
             <div>
               <SectionHeading eyebrow="Message" title="Send us a message" />

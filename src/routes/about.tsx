@@ -43,7 +43,7 @@ function AboutPage() {
                 alt={`Portrait of ${welcome.name}`}
                 loading="lazy"
                 decoding="async"
-                className="aspect-[4/5] w-full object-cover"
+                className="aspect-[4/5] w-full max-h-[480px] object-cover"
               />
               <div className="p-6">
                 <p className="font-display text-lg font-semibold text-foreground">{welcome.name}</p>
