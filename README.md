@@ -123,7 +123,12 @@ public/images/
 Invoke-WebRequest -Uri "https://buraayyuu.shaggarcity.et/storage/mayor_photos/BsDUw3wMJ8W08GJPJprtxdeScsQ87rzlG4jliYgg.jpg" -OutFile "public/images/mayor/welcome.jpg"
 ```
 
-**OG Image:** The social preview image (`og-image.png`) was generated from the homepage design and placed in `public/og-image.png`. To regenerate, screenshot the homepage hero section at 1200x630px.
+## 🖼️ Social Preview
+
+The Open Graph image (`og-image.png`) controls how the site appears when shared on Telegram, Facebook, and other platforms.
+
+- **File:** `public/og-image.png` (1200x630px)
+- **To regenerate:** Screenshot the homepage hero section at 1200x630px and save as `og-image.png`
 
 ## 🤝 Contributing
 
