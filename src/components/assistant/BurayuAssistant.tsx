@@ -254,7 +254,7 @@ export function BurayuAssistant() {
         aria-expanded={open}
         whileHover={{ scale: 1.04 }}
         whileTap={{ scale: 0.96 }}
-        className="fixed bottom-4 right-4 z-50 inline-flex h-[52px] w-[52px] items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lift transition-colors hover:bg-primary-deep sm:h-14 sm:w-14 sm:bottom-6 sm:right-6"
+        className="fixed bottom-5 right-4 z-50 inline-flex h-[52px] w-[52px] items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lift transition-colors hover:bg-primary-deep sm:h-14 sm:w-14 sm:bottom-6 sm:right-6"
       >
         {open ? <X className="h-5 w-5" /> : <MessageCircle className="h-5 w-5" />}
       </motion.button>
@@ -326,7 +326,7 @@ export function BurayuAssistant() {
               <ConversationContent className="gap-2 px-3 py-3">
                 {messages.length === 0 && (
                   <Message from="assistant">
-                    <MessageContent className="text-[14px] leading-relaxed [&_strong]:font-semibold">
+                    <MessageContent className="text-[13px] leading-relaxed [&_strong]:font-semibold">
                       <MessageResponse>{GREETINGS[language]}</MessageResponse>
                       <time className="mt-1 block text-[11px] text-muted-foreground">
                         {formatTime(startedAt)}
@@ -368,7 +368,7 @@ export function BurayuAssistant() {
                   </p>
                 )}
               </ConversationContent>
-              <ConversationScrollButton />
+              {messages.length > 0 && <ConversationScrollButton />}
             </Conversation>
 
             <div className="border-t border-border bg-card p-2.5">
@@ -401,7 +401,7 @@ export function BurayuAssistant() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder={ui.placeholder}
-                  className="text-[15px]"
+                  className="text-[15px] min-h-10 max-h-32 field-sizing-content"
                   inputMode="text"
                   enterKeyHint="send"
                 />
