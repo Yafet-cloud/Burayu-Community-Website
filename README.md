@@ -118,6 +118,10 @@ public/images/
 
 **How it was done:** Each image was downloaded from the old server and saved locally. All references in `site-data.ts` were updated to use local paths like `/images/slides/slide-1.jpg`.
 
+```powershell
+Invoke-WebRequest -Uri "https://source-server.com/storage/photo.jpg" -OutFile "public/images/slides/photo.jpg"
+```
+
 **OG Image:** The social preview image (`og-image.png`) was generated from the homepage design and placed in `public/og-image.png`. To regenerate, screenshot the homepage hero section at 1200x630px.
 
 ## 🤝 Contributing
