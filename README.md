@@ -9,7 +9,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?logo=typescript)](https://www.typescriptlang.org)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.2-06B6D4?logo=tailwindcss)](https://tailwindcss.com)
 
-[![Official Website](https://img.shields.io/badge/🌐_Visit_Website-buraayyuu.shaggarcity.et-4CAF50)](https://buraayyuu.shaggarcity.et)
+[![Official Website](https://img.shields.io/badge/🌐_Visit_Website-burayu--community--website.vercel.app-4CAF50)](https://burayu-community-website.vercel.app)
 
 </div>
 
@@ -98,7 +98,29 @@ Burayu-Community-Website/
 │   ├── lib/            # Utilities and site data
 │   └── hooks/          # Custom React hooks
 ├── public/             # Static assets
+│   └── images/         # Locally hosted images (slides, gallery, etc.)
 └── package.json
+```
+
+## 📸 Image Migration
+
+All images were migrated from the legacy CDN (`buraayyuu.shaggarcity.et`) to be served locally from Vercel. This ensures the site is fully self-contained with zero external image dependencies.
+
+**Structure:**
+```
+public/images/
+├── slides/      # 5 hero slider images
+├── mayor/       # 1 welcome message portrait
+├── leadership/  # 4 administration staff photos
+├── news/        # 2 article images
+└── gallery/     # 10 gallery photos
+```
+
+**How it was done:** Each image was fetched via HTTP and saved locally, then all references in `site-data.ts` were updated to use local paths.
+
+```powershell
+# Example: downloading a single image
+Invoke-WebRequest -Uri "https://old-cdn.example.com/storage/slide/photo.jpg" -OutFile "public/images/slides/photo.jpg"
 ```
 
 ## 🤝 Contributing
