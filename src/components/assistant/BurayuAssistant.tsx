@@ -251,30 +251,15 @@ export function BurayuAssistant() {
             transition={{ type: "spring", stiffness: 320, damping: 30 }}
             className="fixed bottom-20 right-3 z-50 flex h-[min(68dvh,540px)] w-[min(calc(100vw-1.5rem),22rem)] flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-lift sm:right-4"
           >
-            <header className="flex items-center gap-2.5 border-b border-border bg-primary px-3 py-2.5 text-primary-foreground">
-              <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-foreground/15">
-                <Bot className="h-4 w-4" />
-              </span>
-              <div className="min-w-0 flex-1">
-                <p className="font-display text-sm font-semibold">{ui.assistantLabel}</p>
-                <p className="truncate text-xs opacity-80">{ui.headerSubtitle}</p>
-              </div>
-              <div className="flex items-center gap-1">
-                <label className="sr-only" htmlFor="assistant-language">
-                  {ui.languageLabel}
-                </label>
-                <select
-                  id="assistant-language"
-                  value={language}
-                  onChange={(e) => setLanguage(e.target.value as LanguageCode)}
-                  className="rounded-lg bg-primary-foreground/15 px-2 py-1 text-xs font-medium text-primary-foreground outline-none"
-                >
-                  {LANGUAGES.map((l) => (
-                    <option key={l.code} value={l.code} className="text-foreground">
-                      {l.label}
-                    </option>
-                  ))}
-                </select>
+            <header className="border-b border-border bg-primary text-primary-foreground">
+              <div className="flex items-center gap-2.5 px-3 py-2">
+                <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-foreground/15">
+                  <Bot className="h-4 w-4" />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="font-display text-sm font-semibold">{ui.assistantLabel}</p>
+                  <p className="truncate text-xs opacity-80">{ui.headerSubtitle}</p>
+                </div>
                 <button
                   type="button"
                   onClick={reset}
@@ -284,12 +269,30 @@ export function BurayuAssistant() {
                   <RotateCcw className="h-4 w-4" />
                 </button>
               </div>
+              <div className="flex items-center justify-center gap-1 px-3 pb-2">
+                <label className="sr-only">{ui.languageLabel}</label>
+                {LANGUAGES.map((l) => (
+                  <button
+                    key={l.code}
+                    type="button"
+                    onClick={() => setLanguage(l.code)}
+                    className={cn(
+                      "rounded-full px-3 py-1 text-[11px] font-medium transition-colors",
+                      language === l.code
+                        ? "bg-primary-foreground text-primary"
+                        : "bg-primary-foreground/15 text-primary-foreground/80 hover:bg-primary-foreground/25",
+                    )}
+                  >
+                    {l.label}
+                  </button>
+                ))}
+              </div>
             </header>
 
             <Conversation className="flex-1">
               <ConversationContent className={cn("gap-2.5 px-3 py-3", messages.length === 0 && "flex flex-col items-center justify-center")}>
                 <Message from="assistant">
-                  <MessageContent className="text-center">
+                  <MessageContent>
                     <MessageResponse>{GREETINGS[language]}</MessageResponse>
                     <time className="mt-2 block text-[11px] text-muted-foreground">
                       {formatTime(startedAt)}
