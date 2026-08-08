@@ -289,7 +289,7 @@ export function BurayuAssistant() {
                   type="button"
                   onClick={() => { reset(); setIsMaximized(false); }}
                   aria-label={ui.resetLabel}
-                  className="inline-flex h-7 w-7 items-center justify-center rounded-lg text-primary-foreground/80 transition-colors hover:bg-primary-foreground/15 hover:text-primary-foreground"
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-primary-foreground/80 transition-colors hover:bg-primary-foreground/15 hover:text-primary-foreground"
                 >
                   <RotateCcw className="h-4 w-4" />
                 </button>
@@ -297,7 +297,7 @@ export function BurayuAssistant() {
                   type="button"
                   onClick={() => setIsMaximized((m) => !m)}
                   aria-label={isMaximized ? "Minimize" : "Maximize"}
-                  className="inline-flex h-7 w-7 items-center justify-center rounded-lg text-primary-foreground/80 transition-colors hover:bg-primary-foreground/15 hover:text-primary-foreground"
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-primary-foreground/80 transition-colors hover:bg-primary-foreground/15 hover:text-primary-foreground"
                 >
                   {isMaximized ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
                 </button>
@@ -341,7 +341,8 @@ export function BurayuAssistant() {
                   return (
                     <Message key={message.id} from={message.role}>
                       <MessageContent
-                        className={cn(
+            style={{ touchAction: "manipulation" }}
+            className={cn(
                           "text-[15px] leading-[1.5]",
                           message.role === "user" &&
                             "bg-primary text-primary-foreground [&_time]:text-primary-foreground/70",
@@ -380,7 +381,7 @@ export function BurayuAssistant() {
                         key={action}
                         type="button"
                         onClick={() => submit(action)}
-                        className="inline-flex items-center gap-1 rounded-full border border-border bg-surface px-2 py-0.5 text-[11px] text-muted-foreground transition-colors hover:border-primary hover:bg-primary-soft hover:text-foreground"
+                        className="inline-flex items-center gap-1 rounded-full border border-border bg-surface px-2.5 py-1 text-[11px] text-muted-foreground transition-colors hover:border-primary hover:bg-primary-soft hover:text-foreground"
                       >
                         {Icon && <Icon className="h-3 w-3" />}
                         {action}
@@ -401,6 +402,8 @@ export function BurayuAssistant() {
                   onChange={(e) => setInput(e.target.value)}
                   placeholder={ui.placeholder}
                   className="text-[15px]"
+                  inputMode="text"
+                  enterKeyHint="send"
                 />
                 <PromptInputFooter className="justify-end">
                   <PromptInputSubmit
