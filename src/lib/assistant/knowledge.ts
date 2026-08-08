@@ -20,7 +20,7 @@ export type LanguageCode = (typeof LANGUAGES)[number]["code"];
 
 export const GREETINGS: Record<LanguageCode, string> = {
   en: "Welcome to the **Burayu Sub City Administration**. I am your **virtual assistant**. I can help you explore **services**, **news**, **projects**, **announcements**, and other information available on this website. How may I assist you today?",
-  om: "Baga gara **Waajjira Bulchiinsaa Kutaa Magaalaa Buraayyuutti** dhuftan. Ani **gargaaraa dhugaa** keessaa dha. **Tajaajiloota**, **oduu**, **pirojektoota**, **beeksisoota** fi odeeffannoo marsariiticharra jiru akka argattan isin gargaara. Akkam jechuun isin gargaaruu danda'a?",
+  om: "Baga gara **Waajjira Bulchiinsaa Kutaa Magaalaa Buraayyuutti** dhuftan. Ani **gargaaraa dhugaa** keessaan dha. **Tajaajiloota**, **oduu**, **pirojektoota**, **beeksisoota** fi odeeffannoo marsariiticharra jiru akka argattan isin gargaara. Akkamiin isin gargaaruu danda'a?",
   am: "ወደ **ቡራዩ ክፍለ ከተማ አስተዳደር** እንኳን ደህና መጡ። እኔ **ምናባዊ ረዳትዎ** ነኝ። **አገልግሎቶችን**፣ **ዜናዎችን**፣ **ፕሮጀክቶችን**፣ **ማስታወቂያዎችን** እና ሌሎች መረጃዎች በዚህ ድረ ገጽ ላይ ስለሚገኙ እንዲያገኙ እረዳዎታለሁ። እንዴት ልርዳዎ?",
 };
 
@@ -42,7 +42,7 @@ export const QUICK_ACTIONS: Record<LanguageCode, readonly string[]> = {
     "Tajaajiloota Adda baasi",
     "Oduu Haaraa",
     "Beeksisoota",
-    "Wajjira Irratti",
+    "Odeeffannoo Wajjira",
     "Qunnamtii",
   ],
   am: [
@@ -71,7 +71,7 @@ export const UI_STRINGS: Record<LanguageCode, {
   en: {
     headerSubtitle: "Sub City Administration",
     placeholder: "Ask about services, news, or contacts...",
-    disclaimer: "Answers use published website information only.",
+    disclaimer: "Information is based on published official website content.",
     openLabel: "Open the Burayu Smart Assistant",
     closeLabel: "Close the Burayu Smart Assistant",
     resetLabel: "Start a new conversation",
@@ -85,7 +85,7 @@ export const UI_STRINGS: Record<LanguageCode, {
   om: {
     headerSubtitle: "Bulchiinsaa Kutaa Magaalaa",
     placeholder: "Waa'ee tajaajila, oduu, fi qunnamtii gaaffii kaa'i...",
-    disclaimer: "Deebiin madda website keessaa adda ta'e qofa fayyadama.",
+    disclaimer: "Odeeffannoon madda website keessaa adda ta'e irraa fayyadame.",
     openLabel: "Gargaaraa Dhugaa Buraayyuu Keessatti Furii",
     closeLabel: "Gargaaraa Dhugaa Buraayyuu Keessatti Cufii",
     resetLabel: "Yeroo haaraa jalqabsiisi",
@@ -99,7 +99,7 @@ export const UI_STRINGS: Record<LanguageCode, {
   am: {
     headerSubtitle: "የክፍለ ከተማ አስተዳደር",
     placeholder: "ስለ አገልግሎቶች፣ ዜና ወይም መገኛዎች ይጠይቁ...",
-    disclaimer: "መልስ በድረ ገጽ ላይ ያሉ መረጃዎችን ብቻ ይጠቀማል።",
+    disclaimer: "መረጃ በድረ ገጽ ላይ ያሉ ባህሪ ያላቸው መረጃዎች ላይ የተመሰረት ነው።",
     openLabel: "የቡራዩ ሥmart ረዳት ክፈት",
     closeLabel: "የቡራዩ ሥmart ረዳት ደምቅ",
     resetLabel: "አዲስ ውይይት ጀምር",

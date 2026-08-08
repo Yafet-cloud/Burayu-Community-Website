@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type UIMessage } from "ai";
-import { Bot, MessageCircle, RotateCcw, X } from "lucide-react";
+import { Bot, Compass, MessageCircle, Megaphone, Phone, RotateCcw, Send, Building2, Newspaper, X, Maximize2, Minimize2 } from "lucide-react";
 
 import {
   Conversation,
@@ -33,6 +33,8 @@ const STORAGE_KEY = "burayu-assistant-conversation";
 const LANG_KEY = "burayu-assistant-language";
 const MAX_SAVED_MESSAGES = 50;
 const MAX_SAVED_MESSAGE_LENGTH = 20_000;
+
+const ACTION_ICONS = [Compass, Newspaper, Megaphone, Building2, Phone] as const;
 
 function messageText(message: UIMessage) {
   if (!Array.isArray(message.parts)) return "";
@@ -82,6 +84,7 @@ export function BurayuAssistant() {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
   const [language, setLanguage] = useState<LanguageCode>("en");
+  const [isMaximized, setIsMaximized] = useState(false);
   const [initialMessages] = useState<UIMessage[]>(() => loadMessages());
   const [startedAt] = useState(() => new Date());
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -198,6 +201,23 @@ export function BurayuAssistant() {
     };
   }, [open]);
 
+  // Prevent page scroll when wheel event is inside the chatbot panel
+  useEffect(() => {
+    if (!open) return;
+    const panel = panelRef.current;
+    if (!panel) return;
+
+    const onWheel = (e: WheelEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (target && panel.contains(target)) {
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener("wheel", onWheel, { passive: false, capture: true });
+    return () => document.removeEventListener("wheel", onWheel, { capture: true });
+  }, [open]);
+
   const submit = useCallback(
     (text: string) => {
       const value = text.trim();
@@ -215,7 +235,6 @@ export function BurayuAssistant() {
   }, [stop, focusInput]);
 
   const reset = useCallback(() => {
-    if (!window.confirm(ui.resetConfirm)) return;
     setMessages([]);
     try {
       window.localStorage.removeItem(STORAGE_KEY);
@@ -223,7 +242,7 @@ export function BurayuAssistant() {
       /* clearing the in-memory conversation is still sufficient */
     }
     focusInput();
-  }, [setMessages, focusInput, ui.resetConfirm]);
+  }, [setMessages, focusInput]);
 
   return (
     <>
@@ -250,7 +269,12 @@ export function BurayuAssistant() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
             transition={{ type: "spring", stiffness: 320, damping: 30 }}
-            className="fixed bottom-0 left-0 z-50 flex h-[92dvh] w-screen flex-col overflow-hidden rounded-t-2xl border border-border bg-card shadow-lift sm:bottom-6 sm:left-auto sm:right-6 sm:h-[min(680px,calc(100vh-100px))] sm:w-[min(calc(100vw-3rem),420px)] sm:rounded-2xl"
+            className={cn(
+              "fixed bottom-16 right-3 z-50 flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-lift sm:bottom-6 sm:right-6 transition-all duration-200",
+              isMaximized
+                ? "h-[min(85dvh,520px)] w-[min(calc(100vw-1.5rem),400px)] sm:h-[min(700px,calc(100vh-80px))] sm:w-[min(calc(100vw-3rem),440px)]"
+                : "h-[min(65dvh,420px)] w-[min(calc(100vw-1.5rem),340px)] sm:h-[min(520px,calc(100vh-100px))] sm:w-[min(calc(100vw-3rem),380px)]"
+            )}
           >
             <header className="border-b border-border bg-primary text-primary-foreground">
               <div className="flex items-center gap-2.5 px-3 py-2">
@@ -258,16 +282,24 @@ export function BurayuAssistant() {
                   <Bot className="h-4 w-4" />
                 </span>
                 <div className="min-w-0 flex-1">
-                  <p className="font-display text-sm font-semibold">{ui.assistantLabel}</p>
-                  <p className="truncate text-xs opacity-80">{ui.headerSubtitle}</p>
+                  <p className="font-display text-[16px] font-semibold leading-tight">{ui.assistantLabel}</p>
+                  <p className="truncate text-[13px] opacity-80">{ui.headerSubtitle}</p>
                 </div>
                 <button
                   type="button"
-                  onClick={reset}
+                  onClick={() => { reset(); setIsMaximized(false); }}
                   aria-label={ui.resetLabel}
                   className="inline-flex h-7 w-7 items-center justify-center rounded-lg text-primary-foreground/80 transition-colors hover:bg-primary-foreground/15 hover:text-primary-foreground"
                 >
                   <RotateCcw className="h-4 w-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsMaximized((m) => !m)}
+                  aria-label={isMaximized ? "Minimize" : "Maximize"}
+                  className="inline-flex h-7 w-7 items-center justify-center rounded-lg text-primary-foreground/80 transition-colors hover:bg-primary-foreground/15 hover:text-primary-foreground"
+                >
+                  {isMaximized ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
                 </button>
               </div>
               <div className="flex items-center justify-center gap-1 px-3 pb-2">
@@ -278,7 +310,7 @@ export function BurayuAssistant() {
                     type="button"
                     onClick={() => setLanguage(l.code)}
                     className={cn(
-                      "rounded-full px-3 py-1 text-[11px] font-medium transition-colors",
+                      "h-8 rounded-full px-4 text-[13px] font-medium transition-colors",
                       language === l.code
                         ? "bg-primary-foreground text-primary"
                         : "bg-primary-foreground/15 text-primary-foreground/80 hover:bg-primary-foreground/25",
@@ -290,13 +322,13 @@ export function BurayuAssistant() {
               </div>
             </header>
 
-            <Conversation className="flex-1">
-              <ConversationContent className={cn("gap-2.5 px-3 py-3", messages.length === 0 && "flex flex-col items-center justify-center")}>
+              <Conversation className="flex flex-col" style={{ overscrollBehavior: "contain" }}>
+              <ConversationContent className="gap-2 px-3 py-3">
                 {messages.length === 0 && (
                   <Message from="assistant">
-                    <MessageContent>
+                    <MessageContent className="text-[14px] leading-relaxed [&_strong]:font-semibold">
                       <MessageResponse>{GREETINGS[language]}</MessageResponse>
-                      <time className="mt-2 block text-[11px] text-muted-foreground">
+                      <time className="mt-1 block text-[11px] text-muted-foreground">
                         {formatTime(startedAt)}
                       </time>
                     </MessageContent>
@@ -310,6 +342,7 @@ export function BurayuAssistant() {
                     <Message key={message.id} from={message.role}>
                       <MessageContent
                         className={cn(
+                          "text-[15px] leading-[1.5]",
                           message.role === "user" &&
                             "bg-primary text-primary-foreground [&_time]:text-primary-foreground/70",
                         )}
@@ -340,16 +373,20 @@ export function BurayuAssistant() {
             <div className="border-t border-border bg-card p-2.5">
               {messages.length === 0 && (
                 <div className="mb-2 flex flex-wrap gap-1">
-                  {QUICK_ACTIONS[language].map((action) => (
-                    <button
-                      key={action}
-                      type="button"
-                      onClick={() => submit(action)}
-                      className="rounded-full border border-border bg-surface px-2 py-0.5 text-[10px] text-muted-foreground transition-colors hover:border-primary hover:bg-primary-soft hover:text-foreground"
-                    >
-                      {action}
-                    </button>
-                  ))}
+                  {QUICK_ACTIONS[language].map((action, i) => {
+                    const Icon = ACTION_ICONS[i];
+                    return (
+                      <button
+                        key={action}
+                        type="button"
+                        onClick={() => submit(action)}
+                        className="inline-flex items-center gap-1 rounded-full border border-border bg-surface px-2 py-0.5 text-[11px] text-muted-foreground transition-colors hover:border-primary hover:bg-primary-soft hover:text-foreground"
+                      >
+                        {Icon && <Icon className="h-3 w-3" />}
+                        {action}
+                      </button>
+                    );
+                  })}
                 </div>
               )}
               <PromptInput
@@ -363,6 +400,7 @@ export function BurayuAssistant() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder={ui.placeholder}
+                  className="text-[15px]"
                 />
                 <PromptInputFooter className="justify-end">
                   <PromptInputSubmit
@@ -370,10 +408,12 @@ export function BurayuAssistant() {
                     disabled={!input.trim() && !busy}
                     onStop={handleStop}
                     aria-label={busy ? ui.stopLabel : ui.submitLabel}
-                  />
+                  >
+                    <Send className="h-4 w-4" />
+                  </PromptInputSubmit>
                 </PromptInputFooter>
               </PromptInput>
-              <p className="mt-2 text-center text-[11px] text-muted-foreground">
+              <p className="mt-2 text-center text-[12px] leading-4 text-muted-foreground">
                 {ui.disclaimer}
               </p>
             </div>
