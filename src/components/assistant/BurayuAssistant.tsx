@@ -31,6 +31,7 @@ import {
 
 const STORAGE_KEY = "burayu-assistant-conversation";
 const LANG_KEY = "burayu-assistant-language";
+const MAXIMIZE_KEY = "burayu-assistant-maximized";
 const MAX_SAVED_MESSAGES = 50;
 const MAX_SAVED_MESSAGE_LENGTH = 20_000;
 
@@ -84,7 +85,14 @@ export function BurayuAssistant() {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
   const [language, setLanguage] = useState<LanguageCode>("en");
-  const [isMaximized, setIsMaximized] = useState(false);
+  const [isMaximized, setIsMaximized] = useState(() => {
+    if (typeof window === "undefined") return false;
+    try {
+      return window.localStorage.getItem(MAXIMIZE_KEY) === "true";
+    } catch {
+      return false;
+    }
+  });
   const [initialMessages] = useState<UIMessage[]>(() => loadMessages());
   const [startedAt] = useState(() => new Date());
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -128,6 +136,14 @@ export function BurayuAssistant() {
       /* language selection still works for this session */
     }
   }, [language]);
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(MAXIMIZE_KEY, String(isMaximized));
+    } catch {
+      /* storage may be unavailable */
+    }
+  }, [isMaximized]);
 
   useEffect(() => {
     try {
@@ -236,8 +252,10 @@ export function BurayuAssistant() {
 
   const reset = useCallback(() => {
     setMessages([]);
+    setIsMaximized(false);
     try {
       window.localStorage.removeItem(STORAGE_KEY);
+      window.localStorage.removeItem(MAXIMIZE_KEY);
     } catch {
       /* clearing the in-memory conversation is still sufficient */
     }
@@ -287,7 +305,7 @@ export function BurayuAssistant() {
                 </div>
                 <button
                   type="button"
-                  onClick={() => { reset(); setIsMaximized(false); }}
+                  onClick={() => { reset(); }}
                   aria-label={ui.resetLabel}
                   className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-primary-foreground/80 transition-colors hover:bg-primary-foreground/15 hover:text-primary-foreground"
                 >
