@@ -30,18 +30,94 @@ export const THINKING_LABELS: Record<LanguageCode, string> = {
   am: "በማሰብ ላይ...",
 };
 
-export const QUICK_ACTIONS = [
-  "Explore Services",
-  "Latest News",
-  "Current Projects",
-  "Announcements",
-  "About the Office",
-  "Contact Us",
-  "Office Location",
-  "Frequently Asked Questions",
-  "Downloads",
-  "Innovation Programs",
-] as const;
+export const QUICK_ACTIONS: Record<LanguageCode, readonly string[]> = {
+  en: [
+    "Explore Services",
+    "Latest News",
+    "Current Projects",
+    "Announcements",
+    "About the Office",
+    "Contact Us",
+    "Office Location",
+    "Frequently Asked Questions",
+    "Downloads",
+    "Innovation Programs",
+  ],
+  om: [
+    "Tajaajiloota Adda baasi",
+    "Oduu Haaraa",
+    "Pirojektoota Ammayyoo",
+    "Beeksisoota",
+    "Wajjira Irratti",
+    "Qunnamtii",
+    "Kabaja Wajjiraa",
+    "Gaaffii fi Deebii",
+    "Diiguulaa",
+    "Prosagraamii Haasaa",
+  ],
+  am: [
+    "አገልግሎቶችን ያስሱ",
+    "የቅርብ ጊዜ ዜና",
+    "የአሁን ፕሮጀክቶች",
+    "ማስታወቂያዎች",
+    "ስለ ቢሮው",
+    "ያግኙን",
+    "የቢሮው ቦታ",
+    "ተደጋጋሚ ጥያቄዎች",
+    "ማውረጃዎች",
+    "የኡደት ፕሮግራማት",
+  ],
+};
+
+export const UI_STRINGS: Record<LanguageCode, {
+  headerSubtitle: string;
+  placeholder: string;
+  disclaimer: string;
+  openLabel: string;
+  closeLabel: string;
+  resetLabel: string;
+  assistantLabel: string;
+  languageLabel: string;
+  submitLabel: string;
+  stopLabel: string;
+}> = {
+  en: {
+    headerSubtitle: "Sub City Administration",
+    placeholder: "Ask about services, news, or contacts...",
+    disclaimer: "Answers use published website information only.",
+    openLabel: "Open the Burayu Smart Assistant",
+    closeLabel: "Close the Burayu Smart Assistant",
+    resetLabel: "Start a new conversation",
+    assistantLabel: "Burayu Smart Assistant",
+    languageLabel: "Assistant language",
+    submitLabel: "Submit",
+    stopLabel: "Stop",
+  },
+  om: {
+    headerSubtitle: "Bulchiinsaa Kutaa Magaalaa",
+    placeholder: "Waa'ee tajaajila, oduu, fi qunnamtii gaaffii kaa'i...",
+    disclaimer: "Deebiin madda website keessaa adda ta'e qofa fayyadama.",
+    openLabel: "Gargaaraa Dhugaa Buraayyuu Keessatti Furii",
+    closeLabel: "Gargaaraa Dhugaa Buraayyuu Keessatti Cufii",
+    resetLabel: "Yeroo haaraa jalqabsiisi",
+    assistantLabel: "Gargaaraa Dhugaa Buraayyuu",
+    languageLabel: "Afaan gargaaraa",
+    submitLabel: "Ergi",
+    stopLabel: "Dhaamsi",
+  },
+  am: {
+    headerSubtitle: "የክፍለ ከተማ አስተዳደር",
+    placeholder: "ስለ አገልግሎቶች፣ ዜና ወይም መገኛዎች ይጠይቁ...",
+    disclaimer: "መልስ በድረ ገጽ ላይ ያሉ መረጃዎችን ብቻ ይጠቀማል።",
+    openLabel: "የቡራዩ ሥmart ረዳት ክፈት",
+    closeLabel: "የቡራዩ ሥmart ረዳት ደምቅ",
+    resetLabel: "አዲስ ውይይት ጀምር",
+    assistantLabel: "የቡራዩ ሥmart ረዳት",
+    languageLabel: "የረዳት ቋንቋ",
+    submitLabel: "ላክ",
+    stopLabel: "ማስቆም",
+  },
+};
 
 const languageName: Record<string, string> = {
   en: "English",

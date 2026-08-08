@@ -25,6 +25,7 @@ import {
   LANGUAGES,
   QUICK_ACTIONS,
   THINKING_LABELS,
+  UI_STRINGS,
   type LanguageCode,
 } from "@/lib/assistant/knowledge";
 
@@ -84,6 +85,7 @@ export function BurayuAssistant() {
   const [initialMessages] = useState<UIMessage[]>(() => loadMessages());
   const [startedAt] = useState(() => new Date());
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const panelRef = useRef<HTMLElement | null>(null);
 
   const languageRef = useRef(language);
   languageRef.current = language;
@@ -99,11 +101,13 @@ export function BurayuAssistant() {
     [],
   );
 
-  const { messages, sendMessage, status, setMessages, error } = useChat({
+  const { messages, sendMessage, status, setMessages, stop, error } = useChat({
     id: "burayu-assistant",
     messages: initialMessages,
     transport,
   });
+
+  const ui = UI_STRINGS[language];
 
   useEffect(() => {
     try {
@@ -144,6 +148,56 @@ export function BurayuAssistant() {
     if (status === "ready" && open) focusInput();
   }, [status, open, focusInput]);
 
+  const close = useCallback(() => setOpen(false), []);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        close();
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open, close]);
+
+  useEffect(() => {
+    if (!open) return;
+    const pointerDown = (e: PointerEvent) => {
+      const panel = panelRef.current;
+      if (!panel) return;
+      const target = e.target as Node;
+      if (panel.contains(target)) return;
+      if ((target as HTMLElement).closest('[data-chatbot-toggle]')) return;
+      close();
+    };
+    document.addEventListener("pointerdown", pointerDown, true);
+    return () => document.removeEventListener("pointerdown", pointerDown, true);
+  }, [open, close]);
+
+  useEffect(() => {
+    if (!open) return;
+    const vv = window.visualViewport;
+    if (!vv) return;
+    const onResize = () => {
+      const panel = panelRef.current;
+      if (!panel) return;
+      const offset = vv.height < window.innerHeight
+        ? Math.max(0, window.innerHeight - vv.height - (vv.offsetTop || 0))
+        : 0;
+      panel.style.transform = offset > 0 ? `translateY(-${offset}px)` : "";
+    };
+    vv.addEventListener("resize", onResize);
+    vv.addEventListener("scroll", onResize);
+    onResize();
+    return () => {
+      vv.removeEventListener("resize", onResize);
+      vv.removeEventListener("scroll", onResize);
+      if (panelRef.current) panelRef.current.style.transform = "";
+    };
+  }, [open]);
+
   const submit = useCallback(
     (text: string) => {
       const value = text.trim();
@@ -154,6 +208,11 @@ export function BurayuAssistant() {
     },
     [busy, sendMessage, focusInput],
   );
+
+  const handleStop = useCallback(() => {
+    stop();
+    focusInput();
+  }, [stop, focusInput]);
 
   const reset = useCallback(() => {
     setMessages([]);
@@ -169,8 +228,9 @@ export function BurayuAssistant() {
     <>
       <motion.button
         type="button"
+        data-chatbot-toggle=""
         onClick={() => setOpen((v) => !v)}
-        aria-label={open ? "Close the Burayu Smart Assistant" : "Open the Burayu Smart Assistant"}
+        aria-label={open ? ui.closeLabel : ui.openLabel}
         aria-expanded={open}
         whileHover={{ scale: 1.04 }}
         whileTap={{ scale: 0.96 }}
@@ -182,8 +242,9 @@ export function BurayuAssistant() {
       <AnimatePresence>
         {open && (
           <motion.aside
+            ref={panelRef}
             role="dialog"
-            aria-label="Burayu Smart Assistant"
+            aria-label={ui.assistantLabel}
             initial={{ opacity: 0, y: 24, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
@@ -195,12 +256,12 @@ export function BurayuAssistant() {
                 <Bot className="h-4 w-4" />
               </span>
               <div className="min-w-0 flex-1">
-                <p className="font-display text-sm font-semibold">Burayu Smart Assistant</p>
-                <p className="truncate text-xs opacity-80">Sub City Administration</p>
+                <p className="font-display text-sm font-semibold">{ui.assistantLabel}</p>
+                <p className="truncate text-xs opacity-80">{ui.headerSubtitle}</p>
               </div>
               <div className="flex items-center gap-1">
                 <label className="sr-only" htmlFor="assistant-language">
-                  Assistant language
+                  {ui.languageLabel}
                 </label>
                 <select
                   id="assistant-language"
@@ -217,7 +278,7 @@ export function BurayuAssistant() {
                 <button
                   type="button"
                   onClick={reset}
-                  aria-label="Start a new conversation"
+                  aria-label={ui.resetLabel}
                   className="inline-flex h-7 w-7 items-center justify-center rounded-lg text-primary-foreground/80 transition-colors hover:bg-primary-foreground/15 hover:text-primary-foreground"
                 >
                   <RotateCcw className="h-4 w-4" />
@@ -238,7 +299,7 @@ export function BurayuAssistant() {
 
                 {messages.length === 0 && (
                   <div className="flex flex-wrap gap-1.5 px-1 pt-1">
-                    {QUICK_ACTIONS.map((action) => (
+                    {QUICK_ACTIONS[language].map((action) => (
                       <button
                         key={action}
                         type="button"
@@ -296,14 +357,19 @@ export function BurayuAssistant() {
                   ref={textareaRef}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Ask about services, news, or contacts..."
+                  placeholder={ui.placeholder}
                 />
                 <PromptInputFooter className="justify-end">
-                  <PromptInputSubmit status={status} disabled={!input.trim() && !busy} />
+                  <PromptInputSubmit
+                    status={status}
+                    disabled={!input.trim() && !busy}
+                    onStop={handleStop}
+                    aria-label={busy ? ui.stopLabel : ui.submitLabel}
+                  />
                 </PromptInputFooter>
               </PromptInput>
               <p className="mt-2 text-center text-[11px] text-muted-foreground">
-                Answers use published website information only.
+                {ui.disclaimer}
               </p>
             </div>
           </motion.aside>
