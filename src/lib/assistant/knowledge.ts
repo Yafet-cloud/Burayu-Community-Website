@@ -19,9 +19,9 @@ export const LANGUAGES = [
 export type LanguageCode = (typeof LANGUAGES)[number]["code"];
 
 export const GREETINGS: Record<LanguageCode, string> = {
-  en: "Welcome to the Burayu Sub City Administration. I am your virtual assistant. I can help you explore services, news, projects, announcements, and other information available on this website. How may I assist you today?",
-  om: "Baga gara Waajjira Bulchiinsaa Kutaa Magaalaa Buraayyuutti dhuftan. Ani gargaaraa dhugaa keessaa dha. Tajaajiloota, oduu, pirojektoota, beeksisoota fi odeeffannoo marsariiticharra jiru akka argattan isin gargaara. Akkam jechuun isin gargaaruu danda'a?",
-  am: "ወደ ቡራዩ ክፍለ ከተማ አስተዳደር እንኳን ደህና መጡ። እኔ ምናባዊ ረዳትዎ ነኝ። በዚህ ድረ ገጽ ላይ ስለሚገኙ አገልግሎቶች፣ ዜናዎች፣ ፕሮጀክቶች እና ማስታወቂያዎች መረጃ እንዲያገኙ እረዳዎታለሁ። እንዴት ልርዳዎ?",
+  en: "Welcome to the **Burayu Sub City Administration**. I am your **virtual assistant**. I can help you explore **services**, **news**, **projects**, **announcements**, and other information available on this website. How may I assist you today?",
+  om: "Baga gara **Waajjira Bulchiinsaa Kutaa Magaalaa Buraayyuutti** dhuftan. Ani **gargaaraa dhugaa** keessaa dha. **Tajaajiloota**, **oduu**, **pirojektoota**, **beeksisoota** fi odeeffannoo marsariiticharra jiru akka argattan isin gargaara. Akkam jechuun isin gargaaruu danda'a?",
+  am: "ወደ **ቡራዩ ክፍለ ከተማ አስተዳደር** እንኳን ደህና መጡ። እኔ **ምናባዊ ረዳትዎ** ነኝ። **አገልግሎቶችን**፣ **ዜናዎችን**፣ **ፕሮጀክቶችን**፣ **ማስታወቂያዎችን** እና ሌሎች መረጃዎች በዚህ ድረ ገጽ ላይ ስለሚገኙ እንዲያገኙ እረዳዎታለሁ። እንዴት ልርዳዎ?",
 };
 
 export const THINKING_LABELS: Record<LanguageCode, string> = {

@@ -23,7 +23,6 @@ import { cn } from "@/lib/utils";
 import {
   GREETINGS,
   LANGUAGES,
-  QUICK_ACTIONS,
   THINKING_LABELS,
   UI_STRINGS,
   type LanguageCode,
@@ -287,30 +286,15 @@ export function BurayuAssistant() {
             </header>
 
             <Conversation className="flex-1">
-              <ConversationContent className="gap-2.5 px-3 py-3">
+              <ConversationContent className={cn("gap-2.5 px-3 py-3", messages.length === 0 && "flex flex-col items-center justify-center")}>
                 <Message from="assistant">
-                  <MessageContent>
+                  <MessageContent className="text-center">
                     <MessageResponse>{GREETINGS[language]}</MessageResponse>
-                    <time className="mt-1 block text-[11px] text-muted-foreground">
+                    <time className="mt-2 block text-[11px] text-muted-foreground">
                       {formatTime(startedAt)}
                     </time>
                   </MessageContent>
                 </Message>
-
-                {messages.length === 0 && (
-                  <div className="flex flex-wrap gap-1.5 px-1 pt-1">
-                    {QUICK_ACTIONS[language].map((action) => (
-                      <button
-                        key={action}
-                        type="button"
-                        onClick={() => submit(action)}
-                        className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:border-primary hover:bg-primary-soft"
-                      >
-                        {action}
-                      </button>
-                    ))}
-                  </div>
-                )}
 
                 {messages.map((message) => {
                   const text = messageText(message);
