@@ -270,10 +270,10 @@ export function BurayuAssistant() {
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
             transition={{ type: "spring", stiffness: 320, damping: 30 }}
             className={cn(
-              "fixed bottom-16 right-3 z-50 flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-lift sm:bottom-6 sm:right-6 transition-all duration-200",
+              "fixed z-50 flex flex-col overflow-hidden border border-border bg-card shadow-lift transition-all duration-200",
               isMaximized
-                ? "h-[min(85dvh,520px)] w-[min(calc(100vw-1.5rem),400px)] sm:h-[min(700px,calc(100vh-80px))] sm:w-[min(calc(100vw-3rem),440px)]"
-                : "h-[min(65dvh,420px)] w-[min(calc(100vw-1.5rem),340px)] sm:h-[min(520px,calc(100vh-100px))] sm:w-[min(calc(100vw-3rem),380px)]"
+                ? "inset-0 rounded-none sm:inset-auto sm:bottom-6 sm:right-6 sm:rounded-2xl sm:h-[min(700px,calc(100vh-80px))] sm:w-[min(calc(100vw-3rem),440px)]"
+                : "bottom-16 right-3 rounded-2xl h-[min(65dvh,420px)] w-[min(calc(100vw-1.5rem),340px)] sm:bottom-6 sm:right-6 sm:rounded-2xl sm:h-[min(520px,calc(100vh-100px))] sm:w-[min(calc(100vw-3rem),380px)]"
             )}
           >
             <header className="border-b border-border bg-primary text-primary-foreground">
