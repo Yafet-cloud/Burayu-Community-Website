@@ -48,8 +48,8 @@ export const Route = createFileRoute("/")({
         content:
           "Official Burayu Sub-City website providing information, services, news, and resources.",
       },
-      { property: "og:image", content: "https://burayu-community-website.vercel.app/og-image.jpg" },
-      { name: "twitter:image", content: "https://burayu-community-website.vercel.app/og-image.jpg" },
+      { property: "og:image", content: "https://burayu-community-website.vercel.app/og-image.png" },
+      { name: "twitter:image", content: "https://burayu-community-website.vercel.app/og-image.png" },
     ],
   }),
   component: HomePage,

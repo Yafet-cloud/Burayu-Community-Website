@@ -123,6 +123,8 @@ public/images/
 Invoke-WebRequest -Uri "https://old-cdn.example.com/storage/slide/photo.jpg" -OutFile "public/images/slides/photo.jpg"
 ```
 
+**OG Image:** The social preview image (`og-image.png`) was generated from the homepage design and placed in `public/og-image.png`. To regenerate it, open `og-image.html` in a browser at 1200x630px and take a screenshot.
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
