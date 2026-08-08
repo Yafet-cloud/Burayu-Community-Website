@@ -215,6 +215,7 @@ export function BurayuAssistant() {
   }, [stop, focusInput]);
 
   const reset = useCallback(() => {
+    if (!window.confirm(ui.resetConfirm)) return;
     setMessages([]);
     try {
       window.localStorage.removeItem(STORAGE_KEY);
@@ -222,7 +223,7 @@ export function BurayuAssistant() {
       /* clearing the in-memory conversation is still sufficient */
     }
     focusInput();
-  }, [setMessages, focusInput]);
+  }, [setMessages, focusInput, ui.resetConfirm]);
 
   return (
     <>
@@ -234,7 +235,7 @@ export function BurayuAssistant() {
         aria-expanded={open}
         whileHover={{ scale: 1.04 }}
         whileTap={{ scale: 0.96 }}
-        className="fixed bottom-4 right-4 z-50 inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lift transition-colors hover:bg-primary-deep"
+        className="fixed bottom-4 right-4 z-50 inline-flex h-[52px] w-[52px] items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lift transition-colors hover:bg-primary-deep sm:h-14 sm:w-14 sm:bottom-6 sm:right-6"
       >
         {open ? <X className="h-5 w-5" /> : <MessageCircle className="h-5 w-5" />}
       </motion.button>
@@ -249,7 +250,7 @@ export function BurayuAssistant() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
             transition={{ type: "spring", stiffness: 320, damping: 30 }}
-            className="fixed bottom-20 right-3 z-50 flex h-[min(68dvh,540px)] w-[min(calc(100vw-1.5rem),22rem)] flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-lift sm:right-4"
+            className="fixed bottom-0 left-0 z-50 flex h-[92dvh] w-screen flex-col overflow-hidden rounded-t-2xl border border-border bg-card shadow-lift sm:bottom-6 sm:left-auto sm:right-6 sm:h-[min(680px,calc(100vh-100px))] sm:w-[min(calc(100vw-3rem),420px)] sm:rounded-2xl"
           >
             <header className="border-b border-border bg-primary text-primary-foreground">
               <div className="flex items-center gap-2.5 px-3 py-2">
@@ -291,14 +292,16 @@ export function BurayuAssistant() {
 
             <Conversation className="flex-1">
               <ConversationContent className={cn("gap-2.5 px-3 py-3", messages.length === 0 && "flex flex-col items-center justify-center")}>
-                <Message from="assistant">
-                  <MessageContent>
-                    <MessageResponse>{GREETINGS[language]}</MessageResponse>
-                    <time className="mt-2 block text-[11px] text-muted-foreground">
-                      {formatTime(startedAt)}
-                    </time>
-                  </MessageContent>
-                </Message>
+                {messages.length === 0 && (
+                  <Message from="assistant">
+                    <MessageContent>
+                      <MessageResponse>{GREETINGS[language]}</MessageResponse>
+                      <time className="mt-2 block text-[11px] text-muted-foreground">
+                        {formatTime(startedAt)}
+                      </time>
+                    </MessageContent>
+                  </Message>
+                )}
 
                 {messages.map((message) => {
                   const text = messageText(message);
@@ -327,7 +330,7 @@ export function BurayuAssistant() {
 
                 {error && (
                   <p role="alert" className="px-1 text-xs text-destructive">
-                    Chatbot is currently unavailable. Please try again later.
+                    {ui.errorMessage}
                   </p>
                 )}
               </ConversationContent>

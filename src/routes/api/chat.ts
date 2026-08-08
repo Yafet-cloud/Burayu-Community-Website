@@ -27,7 +27,9 @@ export const Route = createFileRoute("/api/chat")({
           });
         }
 
-        const language = typeof body.language === "string" ? body.language : "en";
+        const VALID_LANGUAGES = ["en", "om", "am"];
+        const rawLang = typeof body.language === "string" ? body.language : "en";
+        const language = VALID_LANGUAGES.includes(rawLang) ? rawLang : "en";
         const google = createGoogleGenerativeAI({ apiKey: key });
         const messages = body.messages as UIMessage[];
 
