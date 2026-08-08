@@ -120,7 +120,7 @@ public/images/
 
 ```powershell
 # Downloads ONE image — e.g. the mayor portrait
-Invoke-WebRequest -Uri "https://source-server.com/storage/mayor.jpg" -OutFile "public/images/mayor/welcome.jpg"
+Invoke-WebRequest -Uri "https://buraayyuu.shaggarcity.et/storage/mayor_photos/BsDUw3wMJ8W08GJPJprtxdeScsQ87rzlG4jliYgg.jpg" -OutFile "public/images/mayor/welcome.jpg"
 ```
 
 **OG Image:** The social preview image (`og-image.png`) was generated from the homepage design and placed in `public/og-image.png`. To regenerate, screenshot the homepage hero section at 1200x630px.
