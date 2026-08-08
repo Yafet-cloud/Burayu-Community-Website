@@ -144,11 +144,11 @@ export function BurayuAssistant() {
   }, []);
 
   useEffect(() => {
-    if (open && window.matchMedia("(hover: hover)").matches) focusInput();
+    if (open && !matchMedia("(pointer: coarse)").matches) focusInput();
   }, [open, focusInput]);
 
   useEffect(() => {
-    if (status === "ready" && open) focusInput();
+    if (status === "ready" && open && !matchMedia("(pointer: coarse)").matches) focusInput();
   }, [status, open, focusInput]);
 
   const close = useCallback(() => setOpen(false), []);
