@@ -23,6 +23,7 @@ import { cn } from "@/lib/utils";
 import {
   GREETINGS,
   LANGUAGES,
+  QUICK_ACTIONS,
   THINKING_LABELS,
   UI_STRINGS,
   type LanguageCode,
@@ -140,7 +141,7 @@ export function BurayuAssistant() {
   }, []);
 
   useEffect(() => {
-    if (open) focusInput();
+    if (open && window.matchMedia("(hover: hover)").matches) focusInput();
   }, [open, focusInput]);
 
   useEffect(() => {
@@ -331,6 +332,20 @@ export function BurayuAssistant() {
             </Conversation>
 
             <div className="border-t border-border bg-card p-2.5">
+              {messages.length === 0 && (
+                <div className="mb-2 flex flex-wrap gap-1">
+                  {QUICK_ACTIONS[language].map((action) => (
+                    <button
+                      key={action}
+                      type="button"
+                      onClick={() => submit(action)}
+                      className="rounded-full border border-border bg-surface px-2 py-0.5 text-[10px] text-muted-foreground transition-colors hover:border-primary hover:bg-primary-soft hover:text-foreground"
+                    >
+                      {action}
+                    </button>
+                  ))}
+                </div>
+              )}
               <PromptInput
                 onSubmit={(_message, event) => {
                   event.preventDefault();
