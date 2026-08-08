@@ -1,10 +1,7 @@
 /**
- * Public content mirrored from the existing Burayu Sub City website
- * (buraayyuu.shaggarcity.et). Nothing here is invented — items that the
- * source site leaves blank are marked so the UI can render a placeholder.
+ * Public content for the Burayu Sub City website.
+ * All images are served locally from /images/.
  */
-
-const CDN = "https://buraayyuu.shaggarcity.et";
 
 export const site = {
   name: "Burayu Sub City",
@@ -50,11 +47,11 @@ export const navigation: NavItem[] = [
 ];
 
 export const heroSlides = [
-  `${CDN}/storage/slide/Is60RJUvWcHSjg0FaGv3WR8YbRv898rWM4I445e8.jpg`,
-  `${CDN}/storage/slide/JFNpJCUBQqXJryWuoAP51TpyYtCdjM7WTGPMm9Vw.jpg`,
-  `${CDN}/storage/slide/G6NHok9BSWoeYvNf6sKvzujD1gCOzOq4I1R5mYQC.jpg`,
-  `${CDN}/storage/slide/7AfD3wZPxUEHRre4lAXoHDVXujDCsZhhZeeV8XHr.jpg`,
-  `${CDN}/storage/slide/ryhccCTwhdZ7XzgYsED6EJVEiu5ALH2n2lc85pYG.jpg`,
+  "/images/slides/slide-1.jpg",
+  "/images/slides/slide-2.jpg",
+  "/images/slides/slide-3.jpg",
+  "/images/slides/slide-4.jpg",
+  "/images/slides/slide-5.jpg",
 ];
 
 export const welcome = {
@@ -63,33 +60,33 @@ export const welcome = {
   body: "As the Burayu Sub city Administration, I am excited to share our bold vision for the future of our community. We are committed to transforming Burayu into a model smart city—competitive, livable, and responsive to the needs of all residents. Our goal is to establish Burayu Sub city as a compact, polycentric economic hub, fostering inclusivity, connectivity, and environmental sustainability through strategic spatial planning and targeted investments in innovative infrastructure.",
   name: "Mr. Abate Asirat",
   role: "Burayu Sub City Administration",
-  photo: `${CDN}/storage/mayor_photos/BsDUw3wMJ8W08GJPJprtxdeScsQ87rzlG4jliYgg.jpg`,
+  photo: "/images/mayor/welcome.jpg",
 };
 
 export const leadership = [
   {
     name: "Mr. Kalbessa Tolera",
     role: "Head of Prosperity Party Burayu branch",
-    photo: `${CDN}/storage/high_mayor_photos/RCSmuGbR1m8rL0r6muPBFmSkDU1jEGXEXNwk8yEL.jpg`,
+    photo: "/images/leadership/1.jpg",
   },
   {
     name: "Mr. Asmera Tashome",
     role: "Prosperity Party",
-    photo: `${CDN}/storage/high_mayor_photos/tuiPln6o2HG2YXCt7jLqbgSiGWAldPIhBW80igtK.jpg`,
+    photo: "/images/leadership/2.jpg",
   },
   {
     name: "Mr. Meserat Dame",
     role: "Party",
-    photo: `${CDN}/storage/high_mayor_photos/NilNTnW6QH2XzGaTFl7HxJS90XY4x8brVVPU6FPo.jpg`,
+    photo: "/images/leadership/3.jpg",
   },
   {
     name: "Shibiru Alamu",
     role: "Vice Administration",
-    photo: `${CDN}/storage/high_mayor_photos/CI5vNYppfYSjG5zxaWOhitftOIxhVEUdX0AEkFzm.jpg`,
+    photo: "/images/leadership/4.jpg",
   },
 ];
 
-/** Source site publishes these counters via purecounter — values mirrored from buraayyuu.shaggarcity.et. */
+/** City statistics counters. */
 export const statistics = [
   { label: "Population", value: 283613 },
   { label: "Sub-City", value: null as number | null, display: "Burayu sub city" },
@@ -123,7 +120,7 @@ export const news: NewsItem[] = [
     date: "2024-12-07",
     excerpt:
       "Irreecha (also known as Irreessa) is a thanksgiving holiday celebrated in the Oromia Region of Ethiopia, marking the end of winter. It is one of the most significant cultural festivals in Africa. The Oromo people celebrate Irreecha to express gratitude to Waaqa (their God) for the blessings and mercies received throughout the year.",
-    image: `${CDN}/storage/news_photos/yMdZ6JUnHsAgMw7F291YsAZUMgu9MKvJtKXrIfGU.webp`,
+    image: "/images/news/irreecha.webp",
   },
   {
     id: "2",
@@ -131,7 +128,7 @@ export const news: NewsItem[] = [
     date: "2024-11-28",
     excerpt:
       "Shaggar City is undergoing a digital transformation to improve service efficiency, accessibility, and connectivity for its residents and businesses. The city is implementing various digital initiatives to enhance services and infrastructure, such as: SMART CITY TECHNOLOGY, E-GOVERNANCE and DIGITAL LIBRARY.",
-    image: `${CDN}/storage/news_photos/eMvtpy3QKk6755C8HDoVGch7SgqrwPelj3SXZqPm.png`,
+    image: "/images/news/digital-shaggar.png",
   },
   {
     id: "1",
@@ -143,16 +140,16 @@ export const news: NewsItem[] = [
 ];
 
 export const gallery = [
-  `${CDN}/storage/gallery_images/0WZe1xcknYaZ6Yr939aAU4XMr8yd6vjrFpT2NQNi.png`,
-  `${CDN}/storage/gallery_images/AdkCowNzq6eIiDPlCrodFZ9coYhGQTFkNG4Frsd1.jpg`,
-  `${CDN}/storage/gallery_images/3muxI5K2vvOy9anGMUA8W4Zp2Mm138NwBcbuamnj.jpg`,
-  `${CDN}/storage/gallery_images/smne0wfRnurRzm23Vsjz5gnPRPgG6OBIF0Qjfh5a.jpg`,
-  `${CDN}/storage/gallery_images/cWkSdLBM2MaSnXvW2CEqrymwALqyZlyJ2qqQcviw.jpg`,
-  `${CDN}/storage/gallery_images/dpbW0BE8hMs5f3x6avZbbtuCFnQZfNlriVZwQtGk.jpg`,
-  `${CDN}/storage/gallery_images/jkNXwIzVEN1gZOFEr5sMlydgu1LkSxJpZzHiQBZf.png`,
-  `${CDN}/storage/gallery_images/q9RTORKczQaa5A4OXWcPlXVv5L1jX3QIn33eemWH.jpg`,
-  `${CDN}/storage/gallery_images/LvAaxMp7dwYuKV72P1Yo4PxHTZms8h1pAeyeINrM.jpg`,
-  `${CDN}/storage/gallery_images/iCEE6nmJSPNzARvlY1zgpOrUvptXGkYfIkImLpco.png`,
+  "/images/gallery/1.png",
+  "/images/gallery/2.jpg",
+  "/images/gallery/3.jpg",
+  "/images/gallery/4.jpg",
+  "/images/gallery/5.jpg",
+  "/images/gallery/6.jpg",
+  "/images/gallery/7.png",
+  "/images/gallery/8.jpg",
+  "/images/gallery/9.jpg",
+  "/images/gallery/10.png",
 ];
 
 export const careerIntro =
