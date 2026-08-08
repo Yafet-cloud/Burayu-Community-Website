@@ -116,14 +116,9 @@ public/images/
 └── gallery/     # 10 gallery photos
 ```
 
-**How it was done:** Each image was fetched via HTTP and saved locally, then all references in `site-data.ts` were updated to use local paths.
+**How it was done:** Each image was downloaded from the old server and saved locally. All references in `site-data.ts` were updated to use local paths like `/images/slides/slide-1.jpg`.
 
-```powershell
-# Example: downloading a single image
-Invoke-WebRequest -Uri "https://old-cdn.example.com/storage/slide/photo.jpg" -OutFile "public/images/slides/photo.jpg"
-```
-
-**OG Image:** The social preview image (`og-image.png`) was generated from the homepage design and placed in `public/og-image.png`. To regenerate it, open `og-image.html` in a browser at 1200x630px and take a screenshot.
+**OG Image:** The social preview image (`og-image.png`) was generated from the homepage design and placed in `public/og-image.png`. To regenerate, screenshot the homepage hero section at 1200x630px.
 
 ## 🤝 Contributing
 
