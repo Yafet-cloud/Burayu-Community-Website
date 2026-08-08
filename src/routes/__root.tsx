@@ -71,8 +71,8 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
-const SITE_URL = "https://buraayyuu.shaggarcity.et";
-const OG_IMAGE = "https://burayu-community-website.vercel.app/og-image.jpg";
+const SITE_URL = "https://burayu-community-website.vercel.app";
+const OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
